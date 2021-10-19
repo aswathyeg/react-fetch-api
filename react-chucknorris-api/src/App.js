@@ -1,30 +1,51 @@
 
+import { useEffect } from 'react';
 import './App.css';
+import axios from 'axios';
+
 
 function App() {
+  useEffect(() => {
+    fetchData();
+
+  }, [])
+
+  const fetchData = async () => {
+  const result=  await axios.get('https://api.chucknorris.io/jokes/random');
+    console.log(result.data.value);
+
+  }
   return (
-   <div className="container">
-     <div className="row">
-       <div className="col-6">
-         <h1 className="title">
-           Search a Joke 
-         </h1>
+    <div className="container">
+      <div className="row">
+        <div className="col-6">
+          <h1 className="title">
+            Search a Joke
+          </h1>
 
-       </div>
-       <div className="col-6searchJokeCol">
-         <div className="card">
-           <div className="card-header">
-             <input class="searchOption" type="text"/>
+        </div>
+        <div className="col-6searchJokeCol">
+          <div className="card">
+            <div className="card-header">
+              Search for a word
+            </div>
+            <div className="card-body">
+              <input type="text"></input>
 
-             <span>Search</span>
-           </div>
+            </div>
+          </div>
+          <button className="btn btn-warning btn-lg">Generate Joke</button>
 
-         </div>
-         
-       </div>
-     </div>
-     
-   </div>
+        </div>
+      </div>
+      <h2 className="subtitle">
+        Here is the joke
+      </h2>
+      <h4 >
+        Hi this is the joke
+      </h4>
+
+    </div>
   );
 }
 
